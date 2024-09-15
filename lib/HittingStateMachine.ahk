@@ -2,8 +2,8 @@
 
 ; The Machine managing the hitting state
 class HittingStateMachine {
-    __New(resetThreshhold := 2000) {
-        this.resetThreshhold := resetThreshhold
+    __New(hittingRangeHeightFactor := 0.2) {
+        this.hittingRangeHeightFactor := hittingRangeHeightFactor
         
         this.initState()
     }
@@ -22,9 +22,6 @@ class HittingStateMachine {
     }
 
     handleState(){
-        if(this.currentState.getElapsedTime() > this.resetThreshhold){
-            this.reset()
-        }  
         this.currentState.handle()
     }
 
@@ -36,8 +33,10 @@ class HittingStateMachine {
         this.windowWidth := windowWidth
         this.windowHeight := windowHeight
 
-        this.hittingClickRightX := windowWidth * 0.55
-        this.hittingClickRightY := windowHeight * 0.5
+        this.hittingRangeHeightFactor := 0.2
+        this.hittingRangeYSize := windowHeight * this.hittingRangeHeightFactor
+        this.hittingClickRightX := windowWidth
+        this.hittingClickRightY := (windowHeight - this.hittingRangeYSize) * 0.5
     }
 
     areWindowBoundriesSet(){
@@ -68,9 +67,10 @@ class HittingStateMachineState {
     }
 
     hit(){
-        Click(this.hittingClickX, this.hittingClickY)
+        Click(this.hittingClickX, this.hittingClickY + this.hittingRangeYSize * Sin(this.getElapsedTime()))
     }
 
+    hittingRangeYSize => this.context.hittingRangeYSize
     hittingClickX => this.context.hittingClickRightX
     hittingClickY => this.context.hittingClickRightY
 }
@@ -78,7 +78,7 @@ class HittingStateMachineState {
 
 ; State implementations
 
-; Standing next to the ground on all directions
+; Standing next to fence where enemies are behind
 class IdleState extends HittingStateMachineState {
     handle(){
         this.startHitting()
@@ -89,7 +89,7 @@ class IdleState extends HittingStateMachineState {
     }
 }
 
-; No Block in direction
+; Start hitting in one direction
 class HittingState extends HittingStateMachineState {
     handle(){
         this.hit()

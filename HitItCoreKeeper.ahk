@@ -3,7 +3,7 @@
 
 readyToStart := false
 startHitting := false
-instructions := "1. Open Core Keeper.`n2. Fill up your inventory with swords. They will break.`n3. Move your character to a position so that an active spawner(e.g. with an mushroom statue inside) is on your right side behind a fence.`n4. Make sure the spawner is also completely fenced.`n5. Put a sword into your hand.`n6. Press CTRL + F to get started power up your combat skill.`n`nControls:`nPress CTRL + F to stop/start the procedure`nPress CTRL + Q to quit this script"
+instructions := "1. Open Core Keeper.`n2. Fill up your inventory with swords or any other weapon to max your skills for. They will break.`n3. Move your character to a position so that an active spawner(e.g. with a mushroom statue inside) is on your right side behind a fence.`n4. Make sure the spawner is also completely fenced.`n5. Put the weapon into your hand.`n6. Press CTRL + F to get started power up your combat skill.`n`nControls:`nPress CTRL + F to stop/start the procedure`nPress CTRL + Q to quit this script"
 
 resultOk := MsgBox("Hey there core keepers`n`nIt's a nice day to go hitting, ain't it? Huho.`n`n" . instructions, "Core Keeper - HitIt", 0)
 readyToStart := resultOk = "OK"
