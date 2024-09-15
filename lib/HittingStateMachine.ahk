@@ -2,7 +2,7 @@
 
 ; The Machine managing the hitting state
 class HittingStateMachine {
-    __New(hittingRangeHeightFactor := 0.2) {
+    __New(hittingRangeHeightFactor := 0.15) {
         this.hittingRangeHeightFactor := hittingRangeHeightFactor
         
         this.initState()
@@ -33,7 +33,6 @@ class HittingStateMachine {
         this.windowWidth := windowWidth
         this.windowHeight := windowHeight
 
-        this.hittingRangeHeightFactor := 0.2
         this.hittingRangeYSize := windowHeight * this.hittingRangeHeightFactor
         this.hittingClickRightX := windowWidth
         this.hittingClickRightY := (windowHeight - this.hittingRangeYSize) * 0.5
@@ -67,7 +66,8 @@ class HittingStateMachineState {
     }
 
     hit(){
-        Click(this.hittingClickX, this.hittingClickY + this.hittingRangeYSize * Sin(this.getElapsedTime()))
+        clickY := this.hittingClickY + this.hittingRangeYSize * Sin(this.getElapsedTime())
+        Click(this.hittingClickX, clickY)
     }
 
     hittingRangeYSize => this.context.hittingRangeYSize
