@@ -1,10 +1,10 @@
-#  Hit It 💎 [![AutoHotkey2](https://img.shields.io/badge/Language-AutoHotkey2-green.svg)](https://autohotkey.com/) 
+#  Hit It 💢 [![AutoHotkey2](https://img.shields.io/badge/Language-AutoHotkey2-green.svg)](https://autohotkey.com/) 
 
 Combat has never been easier before in core keeper. 😻 
 
 This application makes your sword seek mobs power. :heart:  
 
-It's optimal for leveling up your combat skill automatically.
+It's optimal for leveling up your combat skills automatically.
 
 ## Install
 
